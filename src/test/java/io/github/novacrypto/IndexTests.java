@@ -19,7 +19,7 @@
  *  You can contact the authors via github issues.
  */
 
-package io.github.novacrypto.bip32.derivation;
+package io.github.novacrypto;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,7 +45,9 @@ public final class IndexTests {
                 {0, 0x80000000},
                 {1, 0x80000001},
                 {0x0f000001, 0x8f000001},
-                {0x0fffffff, 0x8fffffff}
+                {0x0fffffff, 0x8fffffff},
+                {0x6abcdef1, 0xeabcdef1},
+                {0x7fffffff, 0xffffffff}
         });
     }
 
