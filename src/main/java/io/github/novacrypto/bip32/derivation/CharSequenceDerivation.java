@@ -28,17 +28,17 @@ public enum CharSequenceDerivation implements Derivation<CharSequence> {
     INSTANCE;
 
     @Override
-    public <T> T derive(final T root, final CharSequence derivationPath, final Visitor<T> visitor) {
+    public <T> T derive(final T rootKey, final CharSequence derivationPath, final CkdFunction<T> ckdFunction) {
         final int length = derivationPath.length();
         if (length == 0)
             throw new IllegalArgumentException("Path cannot be empty");
         if (derivationPath.charAt(0) != 'm')
             throw new IllegalArgumentException("Path must start with m");
         if (length == 1)
-            return root;
+            return rootKey;
         if (derivationPath.charAt(1) != '/')
             throw new IllegalArgumentException("Path must start with m/");
-        T current = root;
+        T currentKey = rootKey;
         int buffer = 0;
         for (int i = 2; i < length; i++) {
             final char c = derivationPath.charAt(i);
@@ -47,7 +47,7 @@ public enum CharSequenceDerivation implements Derivation<CharSequence> {
                     buffer = hard(buffer);
                     break;
                 case '/':
-                    current = visitor.visit(current, buffer);
+                    currentKey = ckdFunction.deriveChildKey(currentKey, buffer);
                     buffer = 0;
                     break;
                 default:
@@ -59,6 +59,6 @@ public enum CharSequenceDerivation implements Derivation<CharSequence> {
                         throw new IllegalArgumentException("Index number too large");
             }
         }
-        return visitor.visit(current, buffer);
+        return ckdFunction.deriveChildKey(currentKey, buffer);
     }
 }

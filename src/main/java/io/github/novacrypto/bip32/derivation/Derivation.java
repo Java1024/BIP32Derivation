@@ -23,25 +23,25 @@ package io.github.novacrypto.bip32.derivation;
 
 public interface Derivation<Path> {
 
-    interface Visitor<T> {
+    interface CkdFunction<T> {
         /**
-         * Finds the child at the given index on the parent.
+         * Derives the child at the given index on the parent.
          *
          * @param parent     The parent to find the child of
          * @param childIndex The index of the child
          * @return the {@link T} for the child
          */
-        T visit(final T parent, final int childIndex);
+        T deriveChildKey(final T parent, final int childIndex);
     }
 
     /**
-     * Traverse the nodes from the root to find the node referenced by the path.
+     * Traverse the nodes from the root key node to find the node referenced by the path.
      *
-     * @param root The root of the path
-     * @param path    The path to follow
-     * @param visitor Allows you to follow one link
-     * @param <Node>  The type of node we are visiting
+     * @param rootKey     The root of the path
+     * @param path        The path to follow
+     * @param ckdFunction Allows you to follow one link
+     * @param <Node>      The type of node we are visiting
      * @return The final node found at the end of the path
      */
-    <Node> Node derive(final Node root, final Path path, final Visitor<Node> visitor);
+    <Node> Node derive(final Node rootKey, final Path path, final CkdFunction<Node> ckdFunction);
 }

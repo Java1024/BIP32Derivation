@@ -22,9 +22,9 @@
 package io.github.novacrypto;
 
 import io.github.novacrypto.bip32.derivation.CharSequenceDerivation;
+import io.github.novacrypto.bip32.derivation.CkdFunctionDerive;
 import io.github.novacrypto.bip32.derivation.Derive;
 import io.github.novacrypto.bip32.derivation.IntArrayDerivation;
-import io.github.novacrypto.bip32.derivation.VisitorDerive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -86,15 +86,15 @@ public final class DerivationTests {
     }
 
     @Test
-    public void split_by_VisitorDerive() {
-        final Derive<Integer[]> derive = new VisitorDerive<>(DerivationTests::concat, new Integer[0]);
+    public void split_by_CkdFunctionDerive() {
+        final Derive<Integer[]> derive = new CkdFunctionDerive<>(DerivationTests::concat, new Integer[0]);
         final List<Integer> actual = asList(derive.derive(path));
         assertEquals(expected, actual);
     }
 
     @Test
-    public void split_by_CharSequenceDerivation_and_VisitorDerive() {
-        final Derive<Integer[]> derive = new VisitorDerive<>(DerivationTests::concat, new Integer[0]);
+    public void split_by_CharSequenceDerivation_and_CkdFunctionDerive() {
+        final Derive<Integer[]> derive = new CkdFunctionDerive<>(DerivationTests::concat, new Integer[0]);
         final List<Integer> actual = asList(derive.derive(path, CharSequenceDerivation.INSTANCE));
         assertEquals(expected, actual);
     }
@@ -108,8 +108,8 @@ public final class DerivationTests {
     }
 
     @Test
-    public void split_by_IntArrayDerivation_and_VisitorDerive() {
-        final Derive<Integer[]> derive = new VisitorDerive<>(DerivationTests::concat, new Integer[0]);
+    public void split_by_IntArrayDerivation_and_CkdFunctionDerive() {
+        final Derive<Integer[]> derive = new CkdFunctionDerive<>(DerivationTests::concat, new Integer[0]);
         final List<Integer> actual = asList(derive.derive(list, IntArrayDerivation.INSTANCE));
         assertEquals(expected, actual);
     }

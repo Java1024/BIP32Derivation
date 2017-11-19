@@ -19,25 +19,14 @@
  *  You can contact the authors via github issues.
  */
 
-package io.github.novacrypto.bip32.derivation;
+package io.github.novacrypto.bip32;
 
-public final class VisitorDerive<Node> implements Derive<Node> {
+import org.junit.Test;
 
-    private final Derivation.Visitor<Node> standardVisitor;
-    private final Node rootNode;
+public final class ConstructorCoverage {
 
-    public VisitorDerive(final Derivation.Visitor<Node> standardVisitor, final Node rootNode) {
-        this.standardVisitor = standardVisitor;
-        this.rootNode = rootNode;
-    }
-
-    @Override
-    public Node derive(final CharSequence derivationPath) {
-        return derive(derivationPath, CharSequenceDerivation.INSTANCE);
-    }
-
-    @Override
-    public <Path> Node derive(final Path derivationPath, final Derivation<Path> derivation) {
-        return derivation.derive(rootNode, derivationPath, standardVisitor);
+    @Test
+    public void coverUtilClassConstructors() {
+        new Index();
     }
 }
