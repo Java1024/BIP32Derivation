@@ -9,6 +9,7 @@ repositories {
     jcenter()
 }
 ```
+(coming soon)
 
 Or:
 
@@ -31,3 +32,20 @@ dependencies {
 
 # Usage
 
+```
+Derive<YourKeyType> derive = new CkdFunctionDerive<>((parent, childIndex) -> {/*your CKD function*/}, yourRootKey);
+YourKeyType ketAtPath = derive.derive("m/44'/0'/0'/0/0");
+```
+
+## Caching
+
+```
+CkdFunction<YourKeyType> ckd = (parent, childIndex) -> {/*your CKD function*/};
+CkdFunction<YourKeyType> ckdWithCache = CkdFunctionResultCacheDecorator.newCacheOf(ckd);
+Derive<YourKeyType> derive = new CkdFunctionDerive<>(ckdWithCache, yourRootKey);
+YourKeyType ketAtPath1 = derive.derive("m/44'/0'/0'/0/0");
+YourKeyType ketAtPath2 = derive.derive("m/44'/0'/0'/0/0");
+assertSame(ketAtPath1, ketAtPath2);
+```
+
+Note you can use [NovaCrypto/BIP44](https://github.com/NovaCrypto/BIP44) to form the path with a fluent syntax.
