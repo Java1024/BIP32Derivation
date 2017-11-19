@@ -37,6 +37,15 @@ Derive<YourKeyType> derive = new CkdFunctionDerive<>((parent, childIndex) -> {/*
 YourKeyType ketAtPath = derive.derive("m/44'/0'/0'/0/0");
 ```
 
+## With own path type
+
+If you don't want to use strings to describe paths.
+
+```
+Derive<YourKeyType> derive = new CkdFunctionDerive<>((parent, childIndex) -> {/*your CKD function*/}, yourRootKey);
+YourKeyType ketAtPath = derive.derive(YourCustomPathType, YourCustomDeriveImplementation);
+```
+
 ## Caching
 
 ```
