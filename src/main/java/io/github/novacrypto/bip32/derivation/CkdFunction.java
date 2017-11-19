@@ -1,5 +1,5 @@
 /*
- *  BIP32 library, a Java implementation of BIP32
+ *  BIP32derivation
  *  Copyright (C) 2017 Alan Evans, NovaCrypto
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -15,29 +15,19 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- *  Original source: https://github.com/NovaCrypto/BIP32
+ *  Original source: https://github.com/NovaCrypto/BIP32derivation
  *  You can contact the authors via github issues.
  */
 
 package io.github.novacrypto.bip32.derivation;
 
-public interface Derive<Key> {
-
+public interface CkdFunction<KeyNode> {
     /**
-     * Derive from a string path such as m/44'/0'/0'/0/1
+     * Derives the child at the given index on the parent.
      *
-     * @param derivationPath Path
-     * @return Key at the path
+     * @param parent     The parent to find the child of
+     * @param childIndex The index of the child
+     * @return the {@link KeyNode} for the child
      */
-    Key derive(final CharSequence derivationPath);
-
-    /**
-     * Derive from a generic path using the {@link Derivation} supplied to extract the child indexes
-     *
-     * @param derivationPath Path
-     * @param derivation     The class that extracts the path elements
-     * @param <Path>         The generic type of the path
-     * @return Key at the path
-     */
-    <Path> Key derive(final Path derivationPath, final Derivation<Path> derivation);
+    KeyNode deriveChildKey(final KeyNode parent, final int childIndex);
 }

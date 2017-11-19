@@ -23,10 +23,10 @@ package io.github.novacrypto.bip32.derivation;
 
 public final class CkdFunctionDerive<Node> implements Derive<Node> {
 
-    private final Derivation.CkdFunction<Node> standardCkdFunction;
+    private final CkdFunction<Node> standardCkdFunction;
     private final Node rootNode;
 
-    public CkdFunctionDerive(final Derivation.CkdFunction<Node> standardCkdFunction, final Node rootNode) {
+    public CkdFunctionDerive(final CkdFunction<Node> standardCkdFunction, final Node rootNode) {
         this.standardCkdFunction = standardCkdFunction;
         this.rootNode = rootNode;
     }
