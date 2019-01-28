@@ -1,6 +1,6 @@
 /*
  *  BIP32derivation
- *  Copyright (C) 2017-2018 Alan Evans, NovaCrypto
+ *  Copyright (C) 2017-2019 Alan Evans, NovaCrypto
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -65,6 +65,6 @@ public final class CharSequenceDerivationBadPathTests {
                 .hasMessage(expectedMessage);
     }
 
-    private class Node {
+    private static class Node {
     }
 }

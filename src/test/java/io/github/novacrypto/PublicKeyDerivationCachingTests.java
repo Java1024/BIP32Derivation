@@ -1,6 +1,6 @@
 /*
  *  BIP32derivation
- *  Copyright (C) 2017-2018 Alan Evans, NovaCrypto
+ *  Copyright (C) 2017-2019 Alan Evans, NovaCrypto
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,11 +30,10 @@ import static org.junit.Assert.assertSame;
 
 public final class PublicKeyDerivationCachingTests {
 
-    class Node {
-
+    private static class Node {
     }
 
-    class MyCkdFunction implements io.github.novacrypto.bip32.derivation.CkdFunction<Node> {
+    private static class MyCkdFunction implements io.github.novacrypto.bip32.derivation.CkdFunction<Node> {
         int invocations;
         Node lastParent;
         Node lastResult;
